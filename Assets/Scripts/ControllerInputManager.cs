@@ -13,8 +13,9 @@ public class ControllerInputManager : MonoBehaviour {
 	public Vector3 teleportLocation; //Position we'll teleport to
 	public GameObject player;
 	public LayerMask laserMask; //What our player can collide with
-	public float yNudgeAmount = 0.5f; //specific to teleport aimer object height
+	public float yNudgeAmount = 0.01f; //specific to teleport aimer object height
 	public bool isLeft;
+	public BallReset ball;
 
 	//Swipe
 	private float swipeSum;
@@ -79,14 +80,14 @@ public class ControllerInputManager : MonoBehaviour {
 			if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad)) {
 				Unswipe();
 			}
-			if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
+			if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
 				SpawnObject();
 			}
 		}
 	}
 
 	void OnTriggerStay(Collider col) {
-	if(col.gameObject.CompareTag("Throwable") || col.gameObject.CompareTag("Structure")) {
+		if(col.gameObject.CompareTag("Throwable")) {
 			if(device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
 				ThrowObject (col);
 			}
@@ -94,6 +95,24 @@ public class ControllerInputManager : MonoBehaviour {
 				GrabObject (col);
 			}
 		}
+
+		if(col.gameObject.CompareTag("Structure")) {
+			if(device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
+				MoveObject (col);
+			}
+			else if(device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+				GrabObject (col);
+			}
+		}
+	}
+
+	void MoveObject(Collider coli) {
+		coli.transform.SetParent (null);
+		Rigidbody rigidBody = coli.GetComponent<Rigidbody> ();
+		rigidBody.isKinematic = false;
+		rigidBody.velocity = device.velocity;
+		rigidBody.angularVelocity = device.angularVelocity;
+		Debug.Log ("You have released the trigger");
 	}
 
 	void GrabObject(Collider coli) {

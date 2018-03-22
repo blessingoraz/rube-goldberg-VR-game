@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4107608758530586}
   - component: {fileID: 33064593005148886}
   - component: {fileID: 23329096448138402}
+  - component: {fileID: 65725231154260784}
+  - component: {fileID: 54050563397304172}
   m_Layer: 0
   m_Name: Wood_Plank
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -38,7 +40,7 @@ GameObject:
   - component: {fileID: 4867101724882312}
   m_Layer: 0
   m_Name: Menu Wood Plank
-  m_TagString: Structure
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +148,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004973897604408}
   m_Mesh: {fileID: 4300142, guid: 118b350461f06ae4d831b8b9935c8502, type: 3}
+--- !u!54 &54050563397304172
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1004973897604408}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!65 &65725231154260784
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1004973897604408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01999998, y: 0.0003999999, z: 0.0030376017}
+  m_Center: {x: -0.0000000041909516, y: -7.421477e-10, z: 0.0000000018044375}
 --- !u!114 &114256334077679876
 MonoBehaviour:
   m_ObjectHideFlags: 1

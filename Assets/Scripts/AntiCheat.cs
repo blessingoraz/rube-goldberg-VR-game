@@ -10,6 +10,7 @@ public class AntiCheat : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		
 	}
 	
@@ -20,11 +21,11 @@ public class AntiCheat : MonoBehaviour {
 
 	private void OnTriggerExit(Collider col) {
 		if (col.gameObject == platform) {
-			isCheating = true;
-			ball.SetCheating(true);
-		} else  {
 			isCheating = false;
 			ball.SetCheating(false);
+		} else  {
+			isCheating = true;
+			ball.SetCheating(true);
 		}
 	}
 

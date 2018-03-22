@@ -53,17 +53,18 @@ public class ControllerInputManager : MonoBehaviour {
 
 					//aimer location
 					teleportAimerObject.transform.position = new Vector3 (teleportLocation.x, teleportLocation.y + yNudgeAmount, teleportLocation.z);
-				} else {
-					teleportLocation = new Vector3 (transform.forward.x * 15 + transform.position.x, transform.forward.y * 15 + transform.position.y, transform.forward.z * 15 + transform.position.z);
-					RaycastHit groundRay;
-					if (Physics.Raycast (teleportLocation, -Vector3.up, out groundRay, 17, laserMask)) {
-						teleportLocation = new Vector3 (transform.forward.x * 15 + transform.position.x, groundRay.point.y, transform.forward.z * 15 + transform.position.z);
-					}
-					laser.SetPosition (1, transform.forward * 15 + transform.position);
-
-					//aimer location
-					teleportAimerObject.transform.position = teleportLocation + new Vector3 (0, yNudgeAmount, 0);
 				}
+//				else {
+//					teleportLocation = new Vector3 (transform.forward.x * 15 + transform.position.x, transform.forward.y * 15 + transform.position.y, transform.forward.z * 15 + transform.position.z);
+//					RaycastHit groundRay;
+//					if (Physics.Raycast (teleportLocation, -Vector3.up, out groundRay, 17, laserMask)) {
+//						teleportLocation = new Vector3 (transform.forward.x * 15 + transform.position.x, groundRay.point.y, transform.forward.z * 15 + transform.position.z);
+//					}
+//					laser.SetPosition (1, transform.forward * 15 + transform.position);
+//
+//					//aimer location
+//					teleportAimerObject.transform.position = teleportLocation + new Vector3 (0, yNudgeAmount, 0);
+//				}
 			}
 			if (device.GetPressUp (SteamVR_Controller.ButtonMask.Touchpad)) {
 				laser.gameObject.SetActive (false);
@@ -80,7 +81,7 @@ public class ControllerInputManager : MonoBehaviour {
 			if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad)) {
 				Unswipe();
 			}
-			if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+			if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
 				SpawnObject();
 			}
 		}
@@ -96,12 +97,14 @@ public class ControllerInputManager : MonoBehaviour {
 			}
 		}
 
-		if(col.gameObject.CompareTag("Structure")) {
+		else if(col.gameObject.CompareTag("Structure")) {
 			if(device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
+				Debug.Log ("Called");
 				MoveObject (col);
 			}
 			else if(device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
 				GrabObject (col);
+				Debug.Log ("Uncalled");
 			}
 		}
 	}
@@ -109,10 +112,10 @@ public class ControllerInputManager : MonoBehaviour {
 	void MoveObject(Collider coli) {
 		coli.transform.SetParent (null);
 		Rigidbody rigidBody = coli.GetComponent<Rigidbody> ();
-		rigidBody.isKinematic = false;
-		rigidBody.velocity = device.velocity;
-		rigidBody.angularVelocity = device.angularVelocity;
-		Debug.Log ("You have released the trigger");
+		rigidBody.isKinematic = true;
+//		rigidBody.velocity = device.velocity;
+//		rigidBody.angularVelocity = device.angularVelocity;
+		Debug.Log ("You have released the trigger on object ============");
 	}
 
 	void GrabObject(Collider coli) {

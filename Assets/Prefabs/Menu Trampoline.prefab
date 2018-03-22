@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4704444264685480}
   m_Layer: 0
   m_Name: Menu Trampoline
-  m_TagString: Structure
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,9 +70,11 @@ GameObject:
   - component: {fileID: 4544628079177460}
   - component: {fileID: 33065010523272246}
   - component: {fileID: 23602030341333790}
+  - component: {fileID: 64594655317862678}
+  - component: {fileID: 54139438646522546}
   m_Layer: 0
   m_Name: Trampoline
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -145,6 +147,35 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1808532536637428}
+  m_Mesh: {fileID: 4300150, guid: 118b350461f06ae4d831b8b9935c8502, type: 3}
+--- !u!54 &54139438646522546
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1808532536637428}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!64 &64594655317862678
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1808532536637428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300150, guid: 118b350461f06ae4d831b8b9935c8502, type: 3}
 --- !u!114 &114247719897915646
 MonoBehaviour:

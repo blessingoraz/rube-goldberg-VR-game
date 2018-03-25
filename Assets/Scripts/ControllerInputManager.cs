@@ -32,7 +32,6 @@ public class ControllerInputManager : MonoBehaviour {
 	void Start () {
 		trackedObj = GetComponent<SteamVR_TrackedObject> ();
 		laser = GetComponentInChildren<LineRenderer> ();
-//		laser.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -100,12 +99,10 @@ public class ControllerInputManager : MonoBehaviour {
 
 		else if(col.gameObject.CompareTag("Structure")) {
 			if(device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
-				Debug.Log ("Called");
 				MoveObject (col);
 			}
 			else if(device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
 				GrabObject (col);
-				Debug.Log ("Uncalled");
 			}
 		}
 	}
@@ -114,16 +111,12 @@ public class ControllerInputManager : MonoBehaviour {
 		coli.transform.SetParent (null);
 		Rigidbody rigidBody = coli.GetComponent<Rigidbody> ();
 		rigidBody.isKinematic = true;
-//		rigidBody.velocity = device.velocity;
-//		rigidBody.angularVelocity = device.angularVelocity;
-		Debug.Log ("You have released the trigger on object ============");
 	}
 
 	void GrabObject(Collider coli) {
 		coli.transform.SetParent (gameObject.transform);
 		coli.GetComponent<Rigidbody> ().isKinematic = true;
 		device.TriggerHapticPulse (2000);
-		Debug.Log ("You are touching down the trigger");
 	}
 
 	void ThrowObject(Collider coli) {
@@ -132,7 +125,6 @@ public class ControllerInputManager : MonoBehaviour {
 		rigidBody.isKinematic = false;
 		rigidBody.velocity = device.velocity * throwForce;
 		rigidBody.angularVelocity = device.angularVelocity;
-		Debug.Log ("You have released the trigger");
 	}
 
 	void SpawnObject() {

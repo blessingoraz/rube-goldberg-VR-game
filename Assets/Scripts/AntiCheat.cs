@@ -20,20 +20,20 @@ public class AntiCheat : MonoBehaviour {
 	}
 
 	private void OnTriggerExit(Collider col) {
-		Debug.Log ("When is it called ==============");
+		Debug.Log ("When is it called exit ==============");
 		if (col.gameObject == platform) {
-			Debug.Log ("Not cheating ==============");
+			Debug.Log ("not cheating ==============");
 			isCheating = false;
 			ball.SetCheating(false);
 		} else  {
-			Debug.Log ("cheating ==============");
+			Debug.Log (" cheating ==============");
 			isCheating = true;
 			ball.SetCheating(true);
 		}
 	}
 
 	void OnTriggerEnter(Collider col) {
-		Debug.Log ("When is it called here ==============");
+		Debug.Log ("When is it called here enter ==============");
 		if (col.gameObject != platform && col.gameObject.tag != "Structure") {
 			Debug.Log ("cheating ==============");
 			isCheating = true;

@@ -5,7 +5,7 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 ### Developed by Blessing Orazulume
 
 ### Headset
-This was developed for HTC Vive. To test it, you can get the build folder here.
+This was developed for HTC Vive. To test it, you can get the build folder [here](https://github.com/blessingoraz/rube-goldberg-VR-game/tree/master/RubeGame.app/Contents)
 
 ### Hour Spent
 50 hours.

@@ -20,10 +20,6 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	public void Reset() {
-		ResetStars();
-	}
-
 	public bool IsGameFinished() {
 		if (numStars == numStarsHit) {
 			Debug.Log("Game over u win this level, loading next! " + numStarsHit + " vs " + numStars);
@@ -41,12 +37,7 @@ public class GameManager : MonoBehaviour {
 			loadLevel.Trigger();
 		} else {
 			Debug.Log("Game over!");
-			Win();
 		}
-	}
-
-	private void Win() {
-		Debug.Log("You win!");
 	}
 
 	public void ResetStars() {

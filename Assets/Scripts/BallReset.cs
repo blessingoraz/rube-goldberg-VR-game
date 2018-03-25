@@ -7,19 +7,13 @@ public class BallReset : MonoBehaviour {
 
 	private Color initialColor;
 	private Vector3 initialPosition;
-	private Vector3 initialVelocity;
-	private Vector3 initialAngularVelocity;
 
 	public bool isCheating;
 
-	// Use this for initialization
 	void Start () {
 		initialPosition = transform.position;
-		initialVelocity = GetComponent<Rigidbody>().velocity;
-		initialAngularVelocity = GetComponent<Rigidbody>().angularVelocity;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
 	}
@@ -37,19 +31,19 @@ public class BallReset : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision col) {
 		if (col.gameObject.CompareTag("Ground")) {
-			Debug.Log("Reset Ball!");
+			Debug.Log("Reset Ball ==========!");
 			Rigidbody rigidBody = GetComponent<Rigidbody>();
 			rigidBody.velocity = new Vector3(0, 0, 0); //initialVelocity;
 			rigidBody.angularVelocity = new Vector3(0, 0, 0); // initialAngularVelocity;
 			transform.position = initialPosition;
-			gameManager.Reset();
+			gameManager.ResetStars();
 		}
 
 		if (col.gameObject.CompareTag("Goal")) {
 			if (isCheating) {
 				return;
 			}
-			Debug.Log("Hit Goal!");
+			Debug.Log("Hit Goal =========");
 			bool isFinished = gameManager.IsGameFinished();
 			if (isFinished) {
 				gameObject.SetActive(false);
@@ -72,7 +66,8 @@ public class BallReset : MonoBehaviour {
 	}
 
 	private void HitStructure(GameObject obj) {
-		if (obj.name.Contains("Teleport_Target")) {
+		if (obj.name.Contains("TeleportAimer")) {
+			Debug.Log ("what is here ====="+ obj.name);
 			List<GameObject> structures = GetTeleporters();
 
 			foreach (GameObject structure in structures) {
@@ -89,7 +84,8 @@ public class BallReset : MonoBehaviour {
 		List<GameObject> teleporters = new List<GameObject>();
 
 		foreach (GameObject structure in structures) {
-			if (structure.name.Contains("Teleport_Target")) {
+			Debug.Log ("what is here =====" + structure.name);
+			if (structure.name.Contains("TeleportAimer")) {
 				teleporters.Add(structure);
 			}
 		}

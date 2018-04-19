@@ -40,6 +40,10 @@ public class ObjectMenuManager : MonoBehaviour {
 			objectList[currentObject].transform.rotation);
 	}
 
+	public void DestroyObject() {
+		objectList[currentObject].SetActive(false);
+	}
+
 	void Update () {
 		
 	}

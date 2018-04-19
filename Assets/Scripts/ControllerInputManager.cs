@@ -82,7 +82,10 @@ public class ControllerInputManager : MonoBehaviour {
 				Unswipe();
 			}
 			if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
-				SpawnObject();
+				objectMenuManager.SpawnCurrentObject();
+			}
+			if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
+				objectMenuManager.DestroyObject();
 			}
 		}
 	}
@@ -94,6 +97,7 @@ public class ControllerInputManager : MonoBehaviour {
 			}
 			else if(device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
 				GrabObject (col);
+
 			}
 		}
 
@@ -108,15 +112,17 @@ public class ControllerInputManager : MonoBehaviour {
 	}
 
 	void MoveObject(Collider coli) {
-		coli.transform.SetParent (null);
-		Rigidbody rigidBody = coli.GetComponent<Rigidbody> ();
-		rigidBody.isKinematic = true;
+		coli.transform.SetParent(null);
+		Rigidbody rigidbody = coli.GetComponent<Rigidbody>();
+		rigidbody.velocity = device.velocity * 0f ;
+		rigidbody.angularVelocity = device.angularVelocity * 0f ;
+		Debug.Log("Your Object Spawns");
 	}
 
 	void GrabObject(Collider coli) {
 		coli.transform.SetParent (gameObject.transform);
 		coli.GetComponent<Rigidbody> ().isKinematic = true;
-		device.TriggerHapticPulse (2000);
+		device.TriggerHapticPulse (1000);
 	}
 
 	void ThrowObject(Collider coli) {
@@ -125,10 +131,6 @@ public class ControllerInputManager : MonoBehaviour {
 		rigidBody.isKinematic = false;
 		rigidBody.velocity = device.velocity * throwForce;
 		rigidBody.angularVelocity = device.angularVelocity;
-	}
-
-	void SpawnObject() {
-		objectMenuManager.SpawnCurrentObject();
 	}
 
 	void Swipe() {

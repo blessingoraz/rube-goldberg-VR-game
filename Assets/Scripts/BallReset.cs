@@ -15,7 +15,7 @@ public class BallReset : MonoBehaviour {
 	}
 
 	void Update () {
-		
+
 	}
 
 	public void SetCheating(bool cheat) {
@@ -31,8 +31,9 @@ public class BallReset : MonoBehaviour {
 	private void OnCollisionEnter(Collision col) {
 		if (col.gameObject.CompareTag("Ground")) {
 			Rigidbody rigidBody = GetComponent<Rigidbody>();
-			rigidBody.velocity = new Vector3(0, 0, 0); 
-			rigidBody.angularVelocity = new Vector3(0, 0, 0);
+			rigidBody.angularVelocity = Vector3.zero;		
+			rigidBody.velocity = Vector3.zero;
+			rigidBody.isKinematic = false;
 			transform.position = initialPosition;
 			gameManager.ResetStars();
 		}
@@ -44,7 +45,7 @@ public class BallReset : MonoBehaviour {
 			bool isFinished = gameManager.IsGameFinished();
 			if (isFinished) {
 				gameObject.SetActive(false);
-				gameManager.LoadNextLevel();
+				gameManager.LoadNextLevel(1);
 			} else {
 				gameManager.ResetStars();
 			}
@@ -57,7 +58,6 @@ public class BallReset : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.CompareTag("Star")) {
-			Debug.Log("Hit a star!");
 			gameManager.CollectStar(col.gameObject);
 		}
 	}

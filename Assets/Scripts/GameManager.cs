@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("get here =====================");
 		loadLevel = GetComponent<SteamVR_LoadLevel>();
 		SetNumStars();
 	}
@@ -31,13 +32,24 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void LoadNextLevel() {
-		if (loadLevel) {
-			Debug.Log("Loading next level... ");
-			loadLevel.Trigger();
-		} else {
-			Debug.Log("Game over!");
+	public void LoadNextLevel(int currentLevel) {
+		string nextLevel = "";
+		switch (currentLevel) {
+			case 0:
+				nextLevel = "Scene1";
+				break;
+			case 1:
+				nextLevel = "Scene2";
+				break;
+			case 2:
+				nextLevel = "Scene3";
+				break;
+			case 3:
+				nextLevel = "Scene4";
+				break;
 		}
+
+		SteamVR_LoadLevel.Begin (nextLevel);
 	}
 
 	public void ResetStars() {

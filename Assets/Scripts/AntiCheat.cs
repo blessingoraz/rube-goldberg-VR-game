@@ -27,14 +27,14 @@ public class AntiCheat : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider col) {
-		if (col.gameObject != platform && col.gameObject.tag != "Structure") {
-			isCheating = true;
-			ball.SetCheating(true);
-		}
-		else {
-			isCheating = false;
-			ball.SetCheating(false);
-		}
-	}
+//	void OnTriggerEnter(Collider col) {
+//		if (col.gameObject != platform && col.gameObject.tag != "Structure") {
+//			isCheating = false;
+//			ball.SetCheating(false);
+//		}
+//		else {
+//			isCheating = false;
+//			ball.SetCheating(false);
+//		}
+//	}
 }

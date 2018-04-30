@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
 	private SteamVR_LoadLevel loadLevel;
 	private List<GameObject> stars;
 
+	public AntiCheat anticheat;
+
 	// Use this for initialization
 	void Start () {
 		loadLevel = GetComponent<SteamVR_LoadLevel>();
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public bool IsGameFinished() {
-		if (numStars == numStarsHit) {
+		if ((numStars == numStarsHit) && (!anticheat.isCheating)) {
 			Debug.Log("Game over u win this level, loading next! " + numStarsHit + " vs " + numStars);
 			return true;
 		}

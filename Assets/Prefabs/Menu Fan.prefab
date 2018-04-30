@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 23819597071879938}
   - component: {fileID: 54337039976009176}
   - component: {fileID: 135261919357446370}
+  - component: {fileID: 114359863560287586}
   m_Layer: 0
   m_Name: Fan_Body
   m_TagString: Structure
@@ -234,7 +235,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &114197458318333048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,6 +292,17 @@ MonoBehaviour:
   m_Text: 'Fan Blades
 
 '
+--- !u!114 &114359863560287586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1564387712600226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d6a23f5ae9e40789e9c1ed7a2918a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135261919357446370
 SphereCollider:
   m_ObjectHideFlags: 1

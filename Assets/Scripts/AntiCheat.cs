@@ -26,15 +26,4 @@ public class AntiCheat : MonoBehaviour {
 			ball.SetCheating(true);
 		}
 	}
-
-//	void OnTriggerEnter(Collider col) {
-//		if (col.gameObject != platform && col.gameObject.tag != "Structure") {
-//			isCheating = false;
-//			ball.SetCheating(false);
-//		}
-//		else {
-//			isCheating = false;
-//			ball.SetCheating(false);
-//		}
-//	}
 }

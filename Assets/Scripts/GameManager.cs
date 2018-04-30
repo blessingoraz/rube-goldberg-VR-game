@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("get here =====================");
 		loadLevel = GetComponent<SteamVR_LoadLevel>();
 		SetNumStars();
 	}

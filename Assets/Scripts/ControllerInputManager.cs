@@ -18,13 +18,13 @@ public class ControllerInputManager : MonoBehaviour {
 	public BallReset ball;
 
 	//Swipe
-	private float swipeSum;
-	private float touchLast;
-	private float touchCurrent;
-	private float distance;
+	private Vector2 swipeSum;
+	private Vector2 touchLast;
+	private Vector2 touchCurrent;
+	private Vector2 distance;
 	private bool hasSwipedLeft;
 	private bool hasSwipedRight;
-	private float minSwipe = 0.5f;
+//	private Vector2 minSwipe;
 
 	public ObjectMenuManager objectMenuManager;
 
@@ -73,7 +73,7 @@ public class ControllerInputManager : MonoBehaviour {
 			}
 		} else {
 			if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad)) {
-				touchLast = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x;
+				touchLast = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
 			}
 			if (device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad)) {
 				Swipe();
@@ -134,22 +134,22 @@ public class ControllerInputManager : MonoBehaviour {
 	}
 
 	void Swipe() {
-		touchCurrent = device.GetAxis (Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x;
+		touchCurrent = device.GetAxis (Valve.VR.EVRButtonId.k_EButton_Axis0);
 		distance = touchCurrent - touchLast; 
 		touchLast = touchCurrent;
 		swipeSum += distance;
 
 		if (!hasSwipedRight) {
-			if (swipeSum > minSwipe) {
-				swipeSum = 0;
+			if (swipeSum.x > 0.5f) {
+				swipeSum.x = 0;
 				SwipeRight();
 				hasSwipedRight = true;
 				hasSwipedLeft = false;
 			}
 		}
 		if (!hasSwipedLeft) {
-			if (swipeSum < minSwipe) {
-				swipeSum = 0;
+			if (swipeSum.x < 0.5f) {
+				swipeSum.x = 0;
 				SwipeLeft();
 				hasSwipedLeft = true;
 				hasSwipedRight = false;
@@ -158,9 +158,9 @@ public class ControllerInputManager : MonoBehaviour {
 	}
 
 	void Unswipe() {
-		swipeSum = 0;
-		touchCurrent = 0;
-		touchLast = 0;
+		swipeSum.x = 0;
+		touchCurrent.x = 0;
+		touchLast.x = 0;
 		hasSwipedLeft = false;
 		hasSwipedRight = false;
 		objectMenuManager.objectList[objectMenuManager.currentObject].SetActive(false);
